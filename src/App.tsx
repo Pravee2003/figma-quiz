@@ -98,36 +98,30 @@ const App: React.FC = () => {
           <>
             {/* Speech Bubble */}
             <img
-              src="/bubble.png"
-              alt="bubble"
-              style={{
-                position: "absolute",
-                bottom: "165px",
-
-                /* Align left side perfectly with quiz card */
-                left: "calc(50% - 450px)",
-
-                width: 240,
-                zIndex: 40,
-                pointerEvents: "none",
-                animation: "floatBubble 3s ease-in-out infinite",
+               src="/bubble.png"
+            alt="bubble"
+            style={{
+              position: "absolute",
+              bottom: 165,     // PERFECT final bubble Y-position
+              left: "16%",     // Stable across Chrome + Firefox
+              width: 240,
+              zIndex: 40,
+              pointerEvents: "none",
+              animation: "floatBubble 3s ease-in-out infinite",
               }}
             />
 
             {/* Paw GIF */}
             <img
-              src="/paw.gif"
-              alt="paw"
-              style={{
-                position: "absolute",
-                bottom: "40px",
-
-                /* Align under bubble */
-                left: "calc(50% - 350px)",
-
-                width: 170,
-                zIndex: 50,
-                pointerEvents: "none",
+               src="/paw.gif"
+            alt="paw"
+            style={{
+              position: "absolute",
+              bottom: 55,      // PERFECT paw Y-position
+              left: "22%",     // Locks it to the exact card region
+              width: 150,
+              zIndex: 50,
+              pointerEvents: "none",
               }}
             />
           </>
