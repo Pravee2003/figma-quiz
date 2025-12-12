@@ -9,24 +9,25 @@ const App: React.FC = () => {
 
   return (
     <main
-      className="min-h-screen w-screen flex items-center justify-center relative overflow-hidden"
+      className="min-h-screen w-screen flex items-center justify-center overflow-hidden"
       style={{
         background: isResultPage
-          ? "white"
+          ? "rgba(255,255,255,1)"
           : "linear-gradient(112.86deg,#BECFEE 0%, #71C6E2 33%, #D9F4FA 66%, #BECFEE 100%)",
       }}
     >
-      {/* ----------------------------- */}
-      {/* CENTERED BACKGROUND ELEMENTS */}
-      {/* ----------------------------- */}
+
+      {/* ------------------------------------------------ */}
+      {/* QUIZ BACKGROUND (only visible before submit)     */}
+      {/* ------------------------------------------------ */}
       {!isResultPage && (
         <>
-          {/* Blurred background fill */}
+          {/* Gradient Blur Layer */}
           <div
-            className="absolute"
+            className="absolute enter-scale"
             style={{
-              width: "100%",
-              height: "100%",
+              width: "100vw",
+              height: "100vh",
               filter: "blur(12px)",
               opacity: 0.35,
               background:
@@ -35,34 +36,31 @@ const App: React.FC = () => {
             }}
           />
 
-          {/* PERFECTLY CENTERED GLASS BACKGROUND */}
+          {/* Glass Rectangle */}
           <div
-            className="absolute pointer-events-none"
+            className="absolute pointer-events-none animate-scaleInGlass"
             style={{
-              width: "1350px",          // FIXED SIZE — PERFECT FOR ALIGNMENT
-              height: "900px",
-              borderRadius: "42px",
-              background:
-                "linear-gradient(112.86deg, rgba(255,255,255,0.4) -6.68%, rgba(255,255,255,0.12) 45.63%, rgba(255,255,255,0.4) 103.45%)",
-              boxShadow: "0 10px 40px rgba(0,0,0,0.05)",
-
-              /* TRUE CENTERING */
+              width: 1250,
+              height: 856,
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
-
+              borderRadius: 42,
+              background:
+                "linear-gradient(112.86deg, rgba(255,255,255,0.4) -6.68%, rgba(255,255,255,0.12) 45.63%, rgba(255,255,255,0.4) 103.45%)",
+              boxShadow: "0 10px 40px rgba(0,0,0,0.05)",
               zIndex: 1,
             }}
           />
         </>
       )}
 
-      {/* ----------------------------- */}
-      {/* QUIZ OR RESULT CARD           */}
-      {/* ----------------------------- */}
+      {/* ------------------------------------------------ */}
+      {/* MAIN CONTENT — Quiz or Result                    */}
+      {/* ------------------------------------------------ */}
       {score === null ? (
         <div
-          className="absolute z-20 rounded-[40px] p-16"
+          className="absolute z-20 rounded-[40px] p-16 animate-scaleIn"
           style={{ width: 1250 }}
         >
           <div
@@ -79,41 +77,41 @@ const App: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div className="z-20">
+        <div className="z-20 enter-scale">
           <Result score={score} onRestart={() => setScore(null)} />
         </div>
       )}
 
-      {/* ----------------------------- */}
-      {/* PAW + BUBBLE (FIRST SCREEN)   */}
-      {/* ----------------------------- */}
+      {/* ------------------------------------------------------- */}
+      {/* PAW + BUBBLE — FIXED POSITION (MATCHES YOUR 2ND IMAGE)  */}
+      {/* ------------------------------------------------------- */}
       {score === null && (
         <>
-          {/* Bubble message */}
+          {/* Bubble Chat */}
           <img
             src="/bubble.png"
             alt="bubble"
             style={{
               position: "absolute",
-              bottom: 155,        // PERFECT Y-POSITION
-              left: "18%",        // FIXED RELATIVE — SAME ON FIREFOX / CHROME
+              bottom: 165,     // PERFECT final bubble Y-position
+              left: "16%",     // Stable across Chrome + Firefox
               width: 240,
-              zIndex: 50,
+              zIndex: 40,
               pointerEvents: "none",
               animation: "floatBubble 3s ease-in-out infinite",
             }}
           />
 
-          {/* Paw image */}
+          {/* Paw GIF */}
           <img
             src="/paw.gif"
             alt="paw"
             style={{
               position: "absolute",
-              bottom: 35,         // PERFECT Y-POSITION
-              left: "23%",        // MATCHES YOUR LOCAL SCREENSHOT EXACTLY
-              width: 155,
-              zIndex: 51,
+              bottom: 55,      // PERFECT paw Y-position
+              left: "22%",     // Locks it to the exact card region
+              width: 150,
+              zIndex: 50,
               pointerEvents: "none",
             }}
           />
@@ -124,4 +122,5 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 
