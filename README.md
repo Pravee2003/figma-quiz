@@ -1,73 +1,132 @@
-# React + TypeScript + Vite
+📘 Figma Quiz — Frontend Assignment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A pixel-perfect quiz application built from a Figma design using React, TypeScript, and Tailwind CSS, with smooth animations, glass-morphism UI, scrolling score logic, and custom-drawn bubble art — fully matching the assignment requirements.
 
-Currently, two official plugins are available:
+🚀 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔗 (Add your Vercel link here once deployed)
+Example: https://vercel.com/praveen-sampaths-projects/figma-quiz
 
-## React Compiler
+📂 GitHub Repository
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🔗 (Add your GitHub repo link here)
+Example: https://github.com/Pravee2003/figma-quiz
 
-## Expanding the ESLint configuration
+🛠️ Tech Stack
+Technology	Purpose
+React + TypeScript	Component-based UI & type safety
+Tailwind CSS	Figma-accurate styling
+CSS Keyframe Animations	Scrolling score, fade-ins
+Vite	Fast dev environment
+Vercel	Deployment
+🎨 Key Features
+✔ Pixel-Perfect UI (Figma Accurate)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Exact spacing, radius, shadows, blur & glass backgrounds
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Typography: DM Serif Display
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Colors & gradients extracted from Figma
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Matching hover, active, spacing, alignment
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+✔ Quiz System
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Multi-question flow
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Selected option highlight
+
+Disabled ← button on first question
+
+Hidden ← on last question
+
+Submit appears only on final question
+
+✔ Progress Indicator (Figma Vector Replication)
+
+Fully custom segmented tracker
+
+Matching vector outlines & gradient segments
+
+✔ Custom Drawn "Best of Luck" Bubble
+
+Created using pure HTML + CSS, not an image
+
+Curved tail, border, fill, shading — 100% accurate
+
+✔ Animated Result Page
+
+Number scrolls upward like movie credits
+
+% symbol fades in 0.5s after animation ends
+
+If score = 0 → no animation, number appears instantly
+
+Gradient text using background-clip: text
+
+📦 Installation & Running Locally
+git clone https://github.com/your-username/figma-quiz
+cd figma-quiz
+npm install
+npm run dev
+
+
+Your app runs at:
+
+http://localhost:5173
+
+🌐 Deployment Instructions (Vercel)
+
+Go to https://vercel.com
+
+Click New → Project
+
+Import your GitHub repository
+
+Configure:
+
+Framework Preset: Vite
+
+Build Command: npm run build
+
+Output Folder: dist
+
+Deploy 🎉
+
+Copy the live URL & place it in the README under Live Demo
+
+📁 Folder Structure
+figma-quiz/
+ ├── src/
+ │   ├── assets/
+ │   ├── components/
+ │   │   ├── Quiz/
+ │   │   ├── Progress.tsx
+ │   │   ├── Result.tsx
+ │   │   └── QuestionCard.tsx
+ │   ├── App.tsx
+ │   └── main.tsx
+ ├── public/
+ ├── README.md
+ ├── package.json
+ ├── tailwind.config.js
+ └── vite.config.ts
+
+📝 Assumptions
+
+Figma layout references 1920×1080 centered canvas
+
+Quiz is self-contained; no backend or API needed
+
+Animations replicate Figma’s intended motion style
+
+🕒 Time Spent
+Task	Duration
+UI + Layout Reproduction	3 hours
+Quiz logic implementation	1 hour
+Animations (scroll, fade, bubble)	1.5 hours
+Debug + final polish	1 hour
+👤 Author
+
+PRAVEEN SAMPATH
+Frontend Developer Intern Candidate

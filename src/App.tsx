@@ -89,7 +89,7 @@ const App: React.FC = () => {
               >
                 {/* Bubble */}
                 <img
-                  src="/src/assets/bubble.png"
+                  src="/bubble.png"
                   alt="bubble"
                   style={{
                     width: 300,
@@ -102,7 +102,7 @@ const App: React.FC = () => {
 
                 {/* Paw */}
                 <img
-                  src="/src/assets/paw.gif"
+                  src="/paw.gif"
                   alt="paw"
                   style={{
                     width: 150,
