@@ -107,7 +107,7 @@ const App: React.FC = () => {
             alt="paw"
             style={{
               position: "absolute",
-              bottom: 55,          // EXACT SAME POSITION AS LOCAL
+              bottom: 60,          // EXACT SAME POSITION AS LOCAL
               left: "22%",         // CHANGED TO PERCENT SO IT DOES NOT SHIFT IN FIREFOX
               width: 150,
               zIndex: 50,
