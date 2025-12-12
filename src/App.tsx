@@ -81,7 +81,7 @@ const App: React.FC = () => {
       {score === null && (
         <>
           <img
-            src="/paw.gif"   // FIXED FOR VERCEL
+            src="components/paw.gif"   // FIXED FOR VERCEL
             alt="paw"
             style={{
               position: "absolute",
@@ -94,7 +94,7 @@ const App: React.FC = () => {
           />
 
           <img
-            src="/bubble.png"  // FIXED FOR VERCEL
+            src="components/bubble.png"  // FIXED FOR VERCEL
             alt="bubble"
             style={{
               position: "absolute",
