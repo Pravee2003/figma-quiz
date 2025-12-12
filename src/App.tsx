@@ -97,12 +97,12 @@ const App: React.FC = () => {
           <>
             {/* Bubble */}
             <img
-               src="/bubble.png"
+                src="/bubble.png"
             alt="bubble"
             style={{
               position: "absolute",
-              bottom: 165,     // PERFECT final bubble Y-position
-              left: "16%",     // Stable across Chrome + Firefox
+              bottom: 165,         // PERFECT POSITION MATCHING YOUR SECOND SCREENSHOT
+              left: "16%",         // FIXED RELATIVE TO CARD → WORKS IN ALL BROWSERS
               width: 240,
               zIndex: 40,
               pointerEvents: "none",
@@ -112,12 +112,12 @@ const App: React.FC = () => {
 
             {/* Paw */}
             <img
-               src="/paw.gif"
+              src="/paw.gif"
             alt="paw"
             style={{
               position: "absolute",
-              bottom: 55,      // PERFECT paw Y-position
-              left: "22%",     // Locks it to the exact card region
+              bottom: 55,          // EXACT SAME POSITION AS LOCAL
+              left: "22%",         // CHANGED TO PERCENT SO IT DOES NOT SHIFT IN FIREFOX
               width: 150,
               zIndex: 50,
               pointerEvents: "none",
