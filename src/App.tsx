@@ -42,7 +42,7 @@ const App: React.FC = () => {
               width: 1250,
               height: 856,
               top: "50%",
-              left: "51%",
+              left: "50%",
               transform: "translate(-50%, -50%)",
               borderRadius: 42,
               background:
