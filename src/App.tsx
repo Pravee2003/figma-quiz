@@ -94,8 +94,8 @@ const App: React.FC = () => {
             alt="paw"
             style={{
               position: "absolute",
-              left: 440,
-              bottom: 20,
+              left: 400,
+              bottom: -40,
               width: 150,
               zIndex: 50,
               pointerEvents: "none",
