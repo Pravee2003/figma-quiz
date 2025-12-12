@@ -56,6 +56,8 @@ const App: React.FC = () => {
                 /* TRUE CENTERING: */
                 top: "50%",
                 left: "50%",
+                right:"50%",
+                down: "50%",
                 transform: "translate(-50%, -50%)",
 
                 zIndex: 1,
