@@ -44,25 +44,25 @@ const App: React.FC = () => {
 
             {/* CENTERED GLASS RECTANGLE */}
             <div
-              className="absolute pointer-events-none animate-scaleInGlass"
-              style={{
-                width: 2100,
-                height: 856,
-                borderRadius: 42,
-                background:
-                  "linear-gradient(112.86deg, rgba(255,255,255,0.4) -6.68%, rgba(255,255,255,0.12) 45.63%, rgba(255,255,255,0.4) 103.45%)",
-                boxShadow: "0 10px 40px rgba(0,0,0,0.05)",
+  className="absolute pointer-events-none animate-scaleInGlass"
+  style={{
+    width: 1250,                // SAME WIDTH AS CARD (you previously set 2100 — way too large)
+    height: 856,
+    borderRadius: 42,
+    background:
+      "linear-gradient(112.86deg, rgba(255,255,255,0.4) -6.68%, rgba(255,255,255,0.12) 45.63%, rgba(255,255,255,0.4) 103.45%)",
+    boxShadow: "0 10px 40px rgba(0,0,0,0.05)",
 
-                /* TRUE CENTERING: */
-                top: "50%",
-                left: "50%",
-                right:"50%",
-                down: "50%",
-                transform: "translate(-50%, -50%)",
+    /* 👇 THE CORRECT CENTERING */
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
 
-                zIndex: 1,
-              }}
-            />
+    zIndex: 1,
+  }}
+/>
+
           </>
         )}
 
