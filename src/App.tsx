@@ -109,7 +109,7 @@ const App: React.FC = () => {
               position: "absolute",
               bottom: 40,          // EXACT SAME POSITION AS LOCAL
               left: "22%",         // CHANGED TO PERCENT SO IT DOES NOT SHIFT IN FIREFOX
-              width: 150,
+              width: 170,
               zIndex: 50,
               pointerEvents: "none",
             }}
