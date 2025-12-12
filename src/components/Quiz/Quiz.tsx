@@ -21,25 +21,21 @@ const Quiz: React.FC<Props> = ({ onFinish }) => {
   const isLast = index === QUESTIONS.length - 1;
 
   const handleNext = () => {
-    if (selected === QUESTIONS[index].correct) {
-      setScore((s) => s + 1);
-    }
+    if (selected === QUESTIONS[index].correct) setScore((s) => s + 1);
 
     if (!isLast) {
       setIndex((i) => i + 1);
       setSelected(null);
-      return;
-    }
+    } else {
+      const finalPercent =
+        Math.round(((selected === QUESTIONS[index].correct ? score + 1 : score) / QUESTIONS.length) * 100);
 
-    // Final score in %
-    const final = Math.round(
-      ((selected === QUESTIONS[index].correct ? score + 1 : score) / QUESTIONS.length) * 100
-    );
-    onFinish(final);
+      onFinish(finalPercent);
+    }
   };
 
   const handlePrev = () => {
-    if (index === 0) return;
+    if (index === 0) return; // disabled on first question
     setIndex((i) => i - 1);
     setSelected(null);
   };
@@ -61,6 +57,7 @@ const Quiz: React.FC<Props> = ({ onFinish }) => {
         Test Your Knowledge
       </h1>
 
+      {/* SUBTITLE */}
       <p
         className="font-dmserif"
         style={{
@@ -84,20 +81,17 @@ const Quiz: React.FC<Props> = ({ onFinish }) => {
           question={`${index + 1}. ${QUESTIONS[index].q}`}
           options={QUESTIONS[index].opts}
           selected={selected}
-          onSelect={(i) => setSelected(i)}
+          onSelect={(val) => setSelected(val)}
         />
       </div>
 
-      {/* --- NAVIGATION BUTTONS --- */}
+      {/* NAVIGATION BUTTONS */}
       <div className="flex justify-end gap-4 mt-6" style={{ width: "100%" }}>
 
-        {/* ← PREVIOUS BUTTON  
-            Visible ALWAYS except last question  
-            Disabled & faded ONLY on the first question 
-        */}
+        {/* LEFT ARROW — always visible but disabled on first screen */}
         {!isLast && (
           <button
-            onClick={index === 0 ? undefined : handlePrev}
+            onClick={handlePrev}
             disabled={index === 0}
             aria-label="previous"
             style={{
@@ -108,15 +102,13 @@ const Quiz: React.FC<Props> = ({ onFinish }) => {
               border: "1px solid rgba(150,229,255,0.05)",
               opacity: index === 0 ? 0.4 : 1,
               cursor: index === 0 ? "not-allowed" : "pointer",
-              fontSize: 22,
-              transition: "opacity 0.3s ease",
             }}
           >
             ←
           </button>
         )}
 
-        {/* → NEXT BUTTON — visible only when NOT last question */}
+        {/* NEXT ARROW — visible on Q1, Q2, Q3 */}
         {!isLast && (
           <button
             onClick={handleNext}
@@ -127,14 +119,13 @@ const Quiz: React.FC<Props> = ({ onFinish }) => {
               borderRadius: 10,
               background: "linear-gradient(89.72deg,#C6E9F7 0.09%,#E5F8FF 99.91%)",
               border: "1px solid rgba(150,229,255,0.05)",
-              fontSize: 22,
             }}
           >
             →
           </button>
         )}
 
-        {/* SUBMIT BUTTON — only when on LAST QUESTION */}
+        {/* SUBMIT — ONLY at last question */}
         {isLast && (
           <button
             onClick={handleNext}
@@ -146,14 +137,12 @@ const Quiz: React.FC<Props> = ({ onFinish }) => {
               background: "linear-gradient(89.72deg,#C6E9F7 0.09%,#E5F8FF 99.91%)",
               border: "1px solid rgba(150,229,255,0.05)",
               fontWeight: 600,
-              fontSize: 18,
             }}
           >
             Submit
           </button>
         )}
       </div>
-
     </section>
   );
 };

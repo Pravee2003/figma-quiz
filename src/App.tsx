@@ -4,6 +4,7 @@ import Result from "./components/Result";
 
 const App: React.FC = () => {
   const [score, setScore] = useState<number | null>(null);
+
   const isResultPage = score !== null;
 
   return (
@@ -16,10 +17,12 @@ const App: React.FC = () => {
       }}
     >
 
-      {/* QUIZ BACKGROUND (only visible in quiz page) */}
+      {/* ------------------------------------------------ */}
+      {/* QUIZ BACKGROUND (SHOWN ONLY BEFORE SUBMIT)       */}
+      {/* ------------------------------------------------ */}
       {!isResultPage && (
         <>
-          {/* Blur BG */}
+          {/* Blur Background */}
           <div
             className="absolute enter-scale"
             style={{
@@ -33,14 +36,14 @@ const App: React.FC = () => {
             }}
           />
 
-          {/* Glass Rectangle */}
+          {/* Glass Main Rectangle */}
           <div
-            className="absolute pointer-events-none enter-scale"
+            className="absolute pointer-events-none animate-scaleInGlass"
             style={{
               width: 1250,
               height: 856,
               top: "50%",
-              left: "50%",
+              left: "51%",
               transform: "translate(-50%, -50%)",
               borderRadius: 42,
               background:
@@ -52,10 +55,12 @@ const App: React.FC = () => {
         </>
       )}
 
-      {/* MAIN CONTENT */}
+      {/* ------------------------------------------------ */}
+      {/* MAIN CONTENT — Quiz or Result                   */}
+      {/* ------------------------------------------------ */}
       {score === null ? (
         <div
-          className="absolute z-20 rounded-[40px] p-16 enter-scale"
+          className="absolute z-20 rounded-[40px] p-16 animate-scaleIn"
           style={{ width: 1250 }}
         >
           <div
@@ -68,49 +73,7 @@ const App: React.FC = () => {
               boxShadow: "0 10px 40px rgba(31,61,75,0.15)",
             }}
           >
-<<<<<<< HEAD
-            <Quiz
-              onFinish={(finalScore) => setScore(finalScore)}
-            />
-
-            {/* 🐾 PAW + BUBBLE ONLY ON FIRST QUESTION */}
-            {isFirstQuestion && (
-              <div
-                className="absolute"
-                style={{
-                  left: -0.5,
-                  bottom: -2,
-                  zIndex: 50,
-                }}
-              >
-                {/* Bubble */}
-                <img
-                  src="/bubble.png"
-                  alt="bubble"
-                  style={{
-                    width: 300,
-                    marginBottom: -20,
-                    marginLeft: -80,
-                    animation: "floatBubble 3s ease-in-out infinite",
-                    pointerEvents: "none",
-                  }}
-                />
-
-                {/* Paw */}
-                <img
-                  src="/paw.gif"
-                  alt="paw"
-                  style={{
-                    width: 150,
-                    filter: "drop-shadow(0 8px 10px rgba(0,0,0,0.15))",
-                    pointerEvents: "none",
-                  }}
-                />
-              </div>
-            )}
-=======
-            <Quiz onFinish={(finalScore) => setScore(finalScore)} />
->>>>>>> 3429eea3250542634d5343c4a900f19d5b8f3f69
+            <Quiz onFinish={(val) => setScore(val)} />
           </div>
         </div>
       ) : (
@@ -119,38 +82,42 @@ const App: React.FC = () => {
         </div>
       )}
 
-      {/* PAW + BUBBLE GIF (only on first quiz) */}
+      {/* ------------------------------------------------ */}
+      {/* PAW + BUBBLE — ONLY ON FIRST QUESTION            */}
+      {/* (Quiz component controls question index)        */}
+      {/* ------------------------------------------------ */}
       {score === null && (
         <>
+          {/* PAW GIF */}
           <img
-            src="components/paw.gif"   // FIXED FOR VERCEL
+            src="/paw.gif"
             alt="paw"
             style={{
               position: "absolute",
-              left: 120,
-              bottom: 120,
-              width: 128,
-              zIndex: 30,
+              left: 400,
+              bottom: 60,
+              width: 150,
+              zIndex: 50,
               pointerEvents: "none",
             }}
           />
 
+          {/* BUBBLE PNG */}
           <img
-            src="components/bubble.png"  // FIXED FOR VERCEL
+            src="/bubble.png"
             alt="bubble"
             style={{
               position: "absolute",
-              left: 68,
-              bottom: 200,
-              width: 180,
-              zIndex: 30,
+              left: 300,
+              bottom: 192,
+              width: 240,
+              zIndex: 40,
               pointerEvents: "none",
               animation: "floatBubble 3s ease-in-out infinite",
             }}
           />
         </>
       )}
-
     </main>
   );
 };

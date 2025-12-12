@@ -5,7 +5,7 @@ type Props = {
   onRestart: () => void;
 };
 
-// gradient text style
+// Figma gradient text style
 const gradientText: React.CSSProperties = {
   background: "linear-gradient(90deg, #15313D 0%, #3CABDA 100%)",
   WebkitBackgroundClip: "text",
@@ -15,25 +15,20 @@ const gradientText: React.CSSProperties = {
 const Result: React.FC<Props> = ({ score, onRestart }) => {
   const [numbers, setNumbers] = useState<string[]>([]);
   const [animate, setAnimate] = useState(false);
-  const [showPercent, setShowPercent] = useState(score === 0); 
-  // If score = 0 → show immediately
+  const [showPercent, setShowPercent] = useState(score === 0); // instantly visible if score = 0
 
   useEffect(() => {
-    // Build 0 → score list
-    const arr = [];
-    for (let i = 0; i <= score; i++) arr.push(String(i));
-    setNumbers(arr);
+    // Build number list (0 → score)
+    const list: string[] = [];
+    for (let i = 0; i <= score; i++) list.push(String(i));
+    setNumbers(list);
 
-    // Start scroll animation
-    setTimeout(() => setAnimate(true), 20);
+    // Run upward scroll animation
+    setTimeout(() => setAnimate(true), 50);
 
-    // If score > 0 → fade in % after 0.5 sec  
+    // % fades in after 0.5s → but not if score=0
     if (score > 0) {
-      const timeout = setTimeout(() => {
-        setShowPercent(true);
-      }, 500);
-
-      return () => clearTimeout(timeout);
+      setTimeout(() => setShowPercent(true), 500);
     }
   }, [score]);
 
@@ -42,14 +37,7 @@ const Result: React.FC<Props> = ({ score, onRestart }) => {
 
       {/* KEEP LEARNING */}
       <p
-        className="
-          px-6 py-2 
-          bg-white/70 
-          rounded-lg 
-          inline-block 
-          font-medium 
-          mb-10
-        "
+        className="px-6 py-2 bg-white/70 rounded-lg inline-block font-medium mb-10"
         style={gradientText}
       >
         Keep Learning!
@@ -63,10 +51,10 @@ const Result: React.FC<Props> = ({ score, onRestart }) => {
         Your Final score is
       </h2>
 
-      {/* SCORE BLOCK */}
+      {/* SCORE DISPLAY */}
       <div className="flex items-center justify-center gap-4">
 
-        {/* Scroll numbers */}
+        {/* Scrolling Numbers */}
         <div
           style={{
             height: "160px",
@@ -104,14 +92,14 @@ const Result: React.FC<Props> = ({ score, onRestart }) => {
           </div>
         </div>
 
-        {/* % symbol */}
+        {/* % SYMBOL */}
         <div
           style={{
             fontFamily: "DM Serif Display",
             fontSize: "80px",
             marginTop: "20px",
             opacity: showPercent ? 1 : 0,
-            transition: score === 0 ? "none" : "opacity 0.6s ease-out",
+            transition: "opacity 0.5s ease-in-out",
             ...gradientText,
           }}
         >
@@ -119,7 +107,7 @@ const Result: React.FC<Props> = ({ score, onRestart }) => {
         </div>
       </div>
 
-      {/* RESTART */}
+      {/* RESTART BUTTON */}
       <button
         onClick={onRestart}
         className="
