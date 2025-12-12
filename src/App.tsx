@@ -95,7 +95,7 @@ const App: React.FC = () => {
             style={{
               position: "absolute",
               left: 440,
-              bottom: 60,
+              bottom: 20,
               width: 150,
               zIndex: 50,
               pointerEvents: "none",
