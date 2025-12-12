@@ -46,7 +46,7 @@ const App: React.FC = () => {
             <div
               className="absolute pointer-events-none animate-scaleInGlass"
               style={{
-                width: 1250,
+                width: 1500,
                 height: 856,
                 borderRadius: 42,
                 background:
