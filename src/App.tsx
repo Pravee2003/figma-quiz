@@ -16,13 +16,12 @@ const App: React.FC = () => {
           : "linear-gradient(112.86deg,#BECFEE 0%, #71C6E2 33%, #D9F4FA 66%, #BECFEE 100%)",
       }}
     >
-
       {/* ------------------------------------------------ */}
-      {/* QUIZ BACKGROUND (SHOWN ONLY BEFORE SUBMIT)       */}
+      {/* QUIZ BACKGROUND (HIDDEN ON RESULT SCREEN)        */}
       {/* ------------------------------------------------ */}
       {!isResultPage && (
         <>
-          {/* Blur Background */}
+          {/* Blurred gradient fill */}
           <div
             className="absolute enter-scale"
             style={{
@@ -36,14 +35,14 @@ const App: React.FC = () => {
             }}
           />
 
-          {/* Glass Main Rectangle */}
+          {/* Frosted glass rectangle */}
           <div
             className="absolute pointer-events-none animate-scaleInGlass"
             style={{
               width: 1250,
               height: 856,
               top: "50%",
-              left: "51%",
+              left: "50%",
               transform: "translate(-50%, -50%)",
               borderRadius: 42,
               background:
@@ -56,7 +55,7 @@ const App: React.FC = () => {
       )}
 
       {/* ------------------------------------------------ */}
-      {/* MAIN CONTENT — Quiz or Result                   */}
+      {/* MAIN CONTENT                                     */}
       {/* ------------------------------------------------ */}
       {score === null ? (
         <div
@@ -83,37 +82,36 @@ const App: React.FC = () => {
       )}
 
       {/* ------------------------------------------------ */}
-      {/* PAW + BUBBLE — ONLY ON FIRST QUESTION            */}
-      {/* (Quiz component controls question index)        */}
+      {/* PAW + BUBBLE — FIXED POSITION CROSS-BROWSER      */}
       {/* ------------------------------------------------ */}
       {score === null && (
         <>
-          {/* PAW GIF */}
-          <img
-            src="/paw.gif"
-            alt="paw"
-            style={{
-              position: "absolute",
-              left: 400,
-              bottom: 250,
-              width: 150,
-              zIndex: 50,
-              pointerEvents: "none",
-            }}
-          />
-
-          {/* BUBBLE PNG */}
+          {/* Speech Bubble */}
           <img
             src="/bubble.png"
             alt="bubble"
             style={{
               position: "absolute",
-              left: 300,
-              bottom: 192,
+              bottom: 165,         // PERFECT POSITION MATCHING YOUR SECOND SCREENSHOT
+              left: "16%",         // FIXED RELATIVE TO CARD → WORKS IN ALL BROWSERS
               width: 240,
               zIndex: 40,
               pointerEvents: "none",
               animation: "floatBubble 3s ease-in-out infinite",
+            }}
+          />
+
+          {/* Paw GIF */}
+          <img
+            src="/paw.gif"
+            alt="paw"
+            style={{
+              position: "absolute",
+              bottom: 55,          // EXACT SAME POSITION AS LOCAL
+              left: "22%",         // CHANGED TO PERCENT SO IT DOES NOT SHIFT IN FIREFOX
+              width: 150,
+              zIndex: 50,
+              pointerEvents: "none",
             }}
           />
         </>
