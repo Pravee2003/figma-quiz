@@ -16,13 +16,12 @@ const App: React.FC = () => {
           : "linear-gradient(112.86deg,#BECFEE 0%, #71C6E2 33%, #D9F4FA 66%, #BECFEE 100%)",
       }}
     >
-
       {/* ------------------------------------------------ */}
-      {/* QUIZ BACKGROUND (only visible before submit)     */}
+      {/* QUIZ BACKGROUND (HIDDEN ON RESULT SCREEN)        */}
       {/* ------------------------------------------------ */}
       {!isResultPage && (
         <>
-          {/* Gradient Blur Layer */}
+          {/* Blurred gradient fill */}
           <div
             className="absolute enter-scale"
             style={{
@@ -36,7 +35,7 @@ const App: React.FC = () => {
             }}
           />
 
-          {/* Glass Rectangle */}
+          {/* Frosted glass rectangle */}
           <div
             className="absolute pointer-events-none animate-scaleInGlass"
             style={{
@@ -56,7 +55,7 @@ const App: React.FC = () => {
       )}
 
       {/* ------------------------------------------------ */}
-      {/* MAIN CONTENT — Quiz or Result                    */}
+      {/* MAIN CONTENT                                     */}
       {/* ------------------------------------------------ */}
       {score === null ? (
         <div
@@ -82,19 +81,19 @@ const App: React.FC = () => {
         </div>
       )}
 
-      {/* ------------------------------------------------------- */}
-      {/* PAW + BUBBLE — FIXED POSITION (MATCHES YOUR 2ND IMAGE)  */}
-      {/* ------------------------------------------------------- */}
+      {/* ------------------------------------------------ */}
+      {/* PAW + BUBBLE — FIXED POSITION CROSS-BROWSER      */}
+      {/* ------------------------------------------------ */}
       {score === null && (
         <>
-          {/* Bubble Chat */}
+          {/* Speech Bubble */}
           <img
             src="/bubble.png"
             alt="bubble"
             style={{
               position: "absolute",
-              bottom: 165,     // PERFECT final bubble Y-position
-              left: "16%",     // Stable across Chrome + Firefox
+              bottom: 165,         // PERFECT POSITION MATCHING YOUR SECOND SCREENSHOT
+              left: "16%",         // FIXED RELATIVE TO CARD → WORKS IN ALL BROWSERS
               width: 240,
               zIndex: 40,
               pointerEvents: "none",
@@ -108,8 +107,8 @@ const App: React.FC = () => {
             alt="paw"
             style={{
               position: "absolute",
-              bottom: 55,      // PERFECT paw Y-position
-              left: "22%",     // Locks it to the exact card region
+              bottom: 55,          // EXACT SAME POSITION AS LOCAL
+              left: "22%",         // CHANGED TO PERCENT SO IT DOES NOT SHIFT IN FIREFOX
               width: 150,
               zIndex: 50,
               pointerEvents: "none",
@@ -122,4 +121,5 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 
