@@ -97,30 +97,30 @@ const App: React.FC = () => {
           <>
             {/* Bubble */}
             <img
-              src="/bubble.png"
-              alt="bubble"
-              style={{
-                position: "absolute",
-                bottom: 155,
-                left: "18%",
-                width: 240,
-                zIndex: 40,
-                pointerEvents: "none",
-                animation: "floatBubble 3s ease-in-out infinite",
+               src="/bubble.png"
+            alt="bubble"
+            style={{
+              position: "absolute",
+              bottom: 165,     // PERFECT final bubble Y-position
+              left: "16%",     // Stable across Chrome + Firefox
+              width: 240,
+              zIndex: 40,
+              pointerEvents: "none",
+              animation: "floatBubble 3s ease-in-out infinite",
               }}
             />
 
             {/* Paw */}
             <img
-              src="/paw.gif"
-              alt="paw"
-              style={{
-                position: "absolute",
-                bottom: 35,
-                left: "23%",
-                width: 155,
-                zIndex: 50,
-                pointerEvents: "none",
+               src="/paw.gif"
+            alt="paw"
+            style={{
+              position: "absolute",
+              bottom: 55,      // PERFECT paw Y-position
+              left: "22%",     // Locks it to the exact card region
+              width: 150,
+              zIndex: 50,
+              pointerEvents: "none",
               }}
             />
           </>
