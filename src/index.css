@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom global styles to match Figma */
+:root{
+  --bg-grad-1: #BECFEE;
+  --bg-grad-2: #71C6E2;
+  --bg-grad-3: #D9F4FA;
+  --bg-grad-4: #BECFEE;
+  --question-grad-a: #C6E9F7;
+  --question-grad-b: #E5F8FF;
+  --question-border: #96E5FF;
+  --container-bg: #F4FDFF;
+  --accent-dark: #15313D;
+  --title-color: #1F6B7A;
+}
+
+/* DM Serif Display for large headings */
+.font-dmserif {
+  font-family: "DM Serif Display", serif;
+}
+
+/* fixed full-screen background: gradient and large blur to mimic Figma */
+.bg-lightBg {
+  background: linear-gradient(112.86deg, rgba(255,255,255,0.4) -6.68%, rgba(255,255,255,0.12) 45.63%, rgba(255,255,255,0.4) 103.45%), linear-gradient(180deg, var(--bg-grad-1), var(--bg-grad-2));
+  background-size: cover;
+  filter: blur(0px);
+}
+
+/* bubble float animation (subtle) */
+@keyframes floatBubble {
+  0% { transform: translateY(0); }
+  50%{ transform: translateY(-6px); }
+  100%{ transform: translateY(0); }
+}
+
+/* rolling number style container */
+.result-number {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 162.63px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #266580; /* deep teal */
+}
+@keyframes scaleInAnim {
+  0% {
+    transform: scale(1.12);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scaleIn {
+  animation: scaleInAnim 0.6s ease-out;
+}
+@keyframes glassScaleIn {
+  0% {
+    transform: translate(-50%, -50%) scale(1.18);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scaleInGlass {
+  animation: glassScaleIn 0.9s ease-out;
+}
+
+
