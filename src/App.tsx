@@ -123,3 +123,21 @@ const App: React.FC = () => {
                   bottom: PAW_HEIGHT,
 
                   width: BUBBLE_WIDTH,
+                  zIndex: 30, // between glass & content
+                  pointerEvents: "none",
+                  animation: "floatBubble 3s ease-in-out infinite",
+                }}
+              />
+            )}
+          </div>
+        ) : (
+          <div className="z-20">
+            <Result score={score} onRestart={() => setScore(null)} />
+          </div>
+        )}
+      </div>
+    </main>
+  );
+};
+
+export default App;
