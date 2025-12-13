@@ -79,39 +79,45 @@ const App: React.FC = () => {
                 onQuestionChange={setQuestionIndex}
               />
 
-              {/* 🐾 PAW — TOUCH LEFT & BOTTOM EDGE */}
+              {/* PAW — TOUCH LEFT & BOTTOM EDGE */}
               {questionIndex === 0 && (
-                <img
-                  src="/paw.gif"
-                  alt="paw"
+                <div
                   style={{
                     position: "absolute",
                     left: 0,
                     bottom: 0,
                     width: 150,
-                    zIndex: 50, // topmost
+                    height: 150,
+                    zIndex: 50,
                     pointerEvents: "none",
                   }}
-                />
+                >
+                  <img
+                    src="/paw.gif"
+                    alt="paw"
+                    style={{
+                      width: "100%",
+                      height: "auto",
+                      display: "block",
+                    }}
+                  />
+
+                  {/* BUBBLE — TOUCHES PAW TOP EDGE */}
+                  <img
+                    src="/bubble.png"
+                    alt="bubble"
+                    style={{
+                      position: "absolute",
+                      bottom: "150px", // EXACTLY paw height → touches top
+                      left: "-10px",
+                      width: "270px", // slightly bigger
+                      zIndex: 40,      // between glass & paw
+                      animation: "floatBubble 3s ease-in-out infinite",
+                    }}
+                  />
+                </div>
               )}
             </div>
-
-            {/* 💬 BUBBLE — TOUCH PAW TOP EDGE */}
-            {questionIndex === 0 && (
-              <img
-                src="/bubble.png"
-                alt="bubble"
-                style={{
-                  position: "absolute",
-                  left: 40,
-                  bottom: 150,          // touches paw top
-                  width: 270,           // slightly bigger
-                  zIndex: 30,           // between glass & content
-                  pointerEvents: "none",
-                  animation: "floatBubble 3s ease-in-out infinite",
-                }}
-              />
-            )}
           </div>
         ) : (
           <div className="z-20">
