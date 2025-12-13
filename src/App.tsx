@@ -101,7 +101,7 @@ const App: React.FC = () => {
             alt="bubble"
             style={{
               position: "absolute",
-              bottom: 15,         // PERFECT POSITION MATCHING YOUR SECOND SCREENSHOT
+              bottom: 5,         // PERFECT POSITION MATCHING YOUR SECOND SCREENSHOT
               left: "16%",         // FIXED RELATIVE TO CARD → WORKS IN ALL BROWSERS
               width: 240,
               zIndex: 40,
@@ -116,7 +116,7 @@ const App: React.FC = () => {
             alt="paw"
             style={{
               position: "absolute",
-              bottom: 10,          // EXACT SAME POSITION AS LOCAL
+              bottom: 2,          // EXACT SAME POSITION AS LOCAL
               left: "22%",         // CHANGED TO PERCENT SO IT DOES NOT SHIFT IN FIREFOX
               width: 150,
               zIndex: 50,
