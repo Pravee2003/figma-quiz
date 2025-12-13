@@ -1,132 +1,102 @@
-📘 Figma Quiz — Frontend Assignment
+ Figma Quiz Application
 
-A pixel-perfect quiz application built from a Figma design using React, TypeScript, and Tailwind CSS, with smooth animations, glass-morphism UI, scrolling score logic, and custom-drawn bubble art — fully matching the assignment requirements.
+A pixel-perfect, interactive quiz application built by converting a Figma design into a functional front-end using React and TypeScript. The project focuses on accurate UI implementation, smooth user interaction, and clean component-based architecture.
 
-🚀 Live Demo
+---
 
-🔗 (Add your Vercel link here once deployed)
-Example: https://vercel.com/praveen-sampaths-projects/figma-quiz
+## 🔗 Live Demo
 
-📂 GitHub Repository
+- **Live URL:** https://figma-quiz-topaz.vercel.app/
+- **GitHub Repository:** https://github.com/Pravee2003/figma-quiz
 
-🔗 (Add your GitHub repo link here)
-Example: https://github.com/Pravee2003/figma-quiz
+---
 
-🛠️ Tech Stack
-Technology	Purpose
-React + TypeScript	Component-based UI & type safety
-Tailwind CSS	Figma-accurate styling
-CSS Keyframe Animations	Scrolling score, fade-ins
-Vite	Fast dev environment
-Vercel	Deployment
-🎨 Key Features
-✔ Pixel-Perfect UI (Figma Accurate)
+## 👤 Author
 
-Exact spacing, radius, shadows, blur & glass backgrounds
+**Praveen Sampath**  
+📧 Email: ps5381@srmist.edu.in  
 
-Typography: DM Serif Display
+---
 
-Colors & gradients extracted from Figma
+## ⚙️ Setup Instructions
 
-Matching hover, active, spacing, alignment
+Follow the steps below to run the project locally:
 
-✔ Quiz System
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Pravee2003/figma-quiz.git
+Navigate to the project directory
 
-Multi-question flow
-
-Selected option highlight
-
-Disabled ← button on first question
-
-Hidden ← on last question
-
-Submit appears only on final question
-
-✔ Progress Indicator (Figma Vector Replication)
-
-Fully custom segmented tracker
-
-Matching vector outlines & gradient segments
-
-✔ Custom Drawn "Best of Luck" Bubble
-
-Created using pure HTML + CSS, not an image
-
-Curved tail, border, fill, shading — 100% accurate
-
-✔ Animated Result Page
-
-Number scrolls upward like movie credits
-
-% symbol fades in 0.5s after animation ends
-
-If score = 0 → no animation, number appears instantly
-
-Gradient text using background-clip: text
-
-📦 Installation & Running Locally
-git clone https://github.com/your-username/figma-quiz
+bash
+Copy code
 cd figma-quiz
+Install dependencies
+
+bash
+Copy code
 npm install
+Run the development server
+
+bash
+Copy code
 npm run dev
+Open in browser
 
-
-Your app runs at:
-
+arduino
+Copy code
 http://localhost:5173
+🧰 Tech Stack Used
+React (TypeScript) – Component-based UI development
 
-🌐 Deployment Instructions (Vercel)
+Vite – Fast build tool and development server
 
-Go to https://vercel.com
+Tailwind CSS – Utility-first styling
 
-Click New → Project
+CSS Animations – For subtle UI effects
 
-Import your GitHub repository
+Vercel – Deployment and hosting
 
-Configure:
+✨ Key Features Implemented
+Pixel-perfect UI matching the provided Figma design
 
-Framework Preset: Vite
+Multi-step quiz with progress indicator
 
-Build Command: npm run build
+Previous / Next navigation with disabled states
 
-Output Folder: dist
+Dynamic score calculation and result screen
 
-Deploy 🎉
+Animated score reveal on submission
 
-Copy the live URL & place it in the README under Live Demo
+Decorative assets (paw & bubble) shown only on first question
 
-📁 Folder Structure
-figma-quiz/
- ├── src/
- │   ├── assets/
- │   ├── components/
- │   │   ├── Quiz/
- │   │   ├── Progress.tsx
- │   │   ├── Result.tsx
- │   │   └── QuestionCard.tsx
- │   ├── App.tsx
- │   └── main.tsx
- ├── public/
- ├── README.md
- ├── package.json
- ├── tailwind.config.js
- └── vite.config.ts
+Strict layering and positioning to ensure:
 
-📝 Assumptions
+No misalignment across browsers
 
-Figma layout references 1920×1080 centered canvas
+Consistent layout in Chrome, Firefox, and Edge
 
-Quiz is self-contained; no backend or API needed
+Clean, reusable React components
 
-Animations replicate Figma’s intended motion style
+Fully responsive and production-ready build
 
-🕒 Time Spent
-Task	Duration
-UI + Layout Reproduction	3 hours
-Quiz logic implementation	1 hour
-Animations (scroll, fade, bubble)	1.5 hours
-Debug + final polish	1 hour
-👤 Author
+📐 Assumptions Made
+The design targets a desktop-first layout (as per Figma prototype)
 
-PRAVEEN SAMPATH
-Frontend Developer Intern Candidate
+Quiz questions and answers are static and embedded in the frontend
+
+No backend or API integration was required for this assignment
+
+Accessibility and keyboard navigation were kept minimal as they were not explicitly mentioned in the requirements
+
+⏱️ Time Spent on Assignment
+Design analysis & planning: ~1.5 hours
+
+UI implementation & styling: ~4 hours
+
+Logic implementation (quiz flow, scoring): ~2 hours
+
+Fine-tuning layout & cross-browser fixes: ~2 hours
+
+Testing & deployment: ~1 hour
+
+Total time: ~10–11 hours
