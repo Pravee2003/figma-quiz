@@ -2,13 +2,21 @@ import React, { useState } from "react";
 import Quiz from "./components/Quiz/Quiz";
 import Result from "./components/Result";
 
-const GLASS_WIDTH = 1350;
-
 const App: React.FC = () => {
   const [score, setScore] = useState<number | null>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
+  const [isRestarting, setIsRestarting] = useState(false);
 
   const isResultPage = score !== null;
+
+  const handleRestart = () => {
+    setIsRestarting(true);
+    setTimeout(() => {
+      setScore(null);
+      setQuestionIndex(0);
+      setIsRestarting(false);
+    }, 450); // match animation duration
+  };
 
   return (
     <main
@@ -39,10 +47,11 @@ const App: React.FC = () => {
               }}
             />
 
+            {/* GLASS RECTANGLE */}
             <div
               className="absolute pointer-events-none"
               style={{
-                width: `${GLASS_WIDTH}px`,
+                width: "1350px",
                 height: "900px",
                 borderRadius: "42px",
                 background:
@@ -52,26 +61,12 @@ const App: React.FC = () => {
                 left: "50%",
                 transform: "translate(-50%, -50%)",
                 zIndex: 1,
+                animation:
+                  isRestarting && questionIndex === 0
+                    ? "scaleDown 0.45s ease-in-out"
+                    : undefined,
               }}
             />
-
-            {/* BUBBLE — TOUCHES GLASS LEFT EDGE */}
-            {questionIndex === 0 && (
-              <img
-                src="/bubble.png"
-                alt="bubble"
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: `translate(calc(-50% - ${GLASS_WIDTH / 2}px), 180px)`,
-                  width: 240,
-                  zIndex: 30, // above glass, below paw
-                  pointerEvents: "none",
-                  animation: "floatBubble 3s ease-in-out infinite",
-                }}
-              />
-            )}
           </>
         )}
 
@@ -81,6 +76,7 @@ const App: React.FC = () => {
             className="absolute z-20 rounded-[40px] p-16"
             style={{ width: 1250 }}
           >
+            {/* MAIN CONTENT RECTANGLE */}
             <div
               className="relative rounded-[40px] p-16"
               style={{
@@ -91,6 +87,10 @@ const App: React.FC = () => {
                 boxShadow: "0 10px 40px rgba(31,61,75,0.15)",
                 overflow: "visible",
                 zIndex: 20,
+                animation:
+                  isRestarting && questionIndex === 0
+                    ? "scaleDown 0.45s ease-in-out"
+                    : undefined,
               }}
             >
               <Quiz
@@ -98,7 +98,7 @@ const App: React.FC = () => {
                 onQuestionChange={setQuestionIndex}
               />
 
-              {/* PAW — TOUCHES CONTENT LEFT & BOTTOM */}
+              {/* PAW — TOUCH CONTENT LEFT & BOTTOM */}
               {questionIndex === 0 && (
                 <img
                   src="/paw.gif"
@@ -108,16 +108,33 @@ const App: React.FC = () => {
                     left: 0,
                     bottom: 0,
                     width: 150,
-                    zIndex: 50, // TOPMOST
+                    zIndex: 60,
                     pointerEvents: "none",
                   }}
                 />
               )}
             </div>
+
+            {/* BUBBLE — TOUCH GLASS LEFT EDGE, TOP LAYER */}
+            {questionIndex === 0 && (
+              <img
+                src="/bubble.png"
+                alt="bubble"
+                style={{
+                  position: "absolute",
+                  left: "calc(50% - 675px)", // GLASS LEFT EDGE (1350 / 2)
+                  bottom: 140,
+                  width: 240,
+                  zIndex: 55, // TOP layer
+                  pointerEvents: "none",
+                  animation: "floatBubble 3s ease-in-out infinite",
+                }}
+              />
+            )}
           </div>
         ) : (
           <div className="z-20">
-            <Result score={score} onRestart={() => setScore(null)} />
+            <Result score={score} onRestart={handleRestart} />
           </div>
         )}
       </div>
