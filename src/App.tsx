@@ -37,6 +37,7 @@ const App: React.FC = () => {
               }}
             />
 
+            {/* GLASS RECTANGLE */}
             <div
               className="absolute pointer-events-none"
               style={{
@@ -79,34 +80,39 @@ const App: React.FC = () => {
                 onQuestionChange={setQuestionIndex}
               />
 
-              {/* PAW — TOUCH LEFT & BOTTOM EDGE */}
+              {/* 🐾 PAW — touches content LEFT & BOTTOM */}
               {questionIndex === 0 && (
                 <img
                   src="/paw.gif"
                   alt="paw"
                   style={{
                     position: "absolute",
-                    left: 0,        // touches left edge
-                    bottom: 0,      // touches bottom edge
+                    left: 0,        // content left edge
+                    bottom: 0,      // content bottom edge
                     width: 150,
-                    zIndex: 50,     // TOP LAYER
+                    zIndex: 60,     // TOP LAYER
                     pointerEvents: "none",
                   }}
                 />
               )}
             </div>
 
-            {/* BUBBLE — BETWEEN GLASS & CONTENT */}
+            {/* 💬 BUBBLE — touches GLASS LEFT & PAW TOP */}
             {questionIndex === 0 && (
               <img
                 src="/bubble.png"
                 alt="bubble"
                 style={{
                   position: "absolute",
-                  left: 40,          // slightly outside content
-                  bottom: 110,       // between glass & card
+
+                  // GLASS LEFT EDGE:
+                  left: "calc(50% - 675px)", // glass left = center - half width
+
+                  // PAW TOP EDGE:
+                  bottom: 150, // exactly paw height
+
                   width: 240,
-                  zIndex: 30,        // between layers
+                  zIndex: 55, // ABOVE content & glass
                   pointerEvents: "none",
                   animation: "floatBubble 3s ease-in-out infinite",
                 }}
