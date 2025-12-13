@@ -17,12 +17,15 @@ const App: React.FC = () => {
           : "linear-gradient(112.86deg,#BECFEE 0%, #71C6E2 33%, #D9F4FA 66%, #BECFEE 100%)",
       }}
     >
+      {/* OUTER WRAPPER */}
       <div
         className="relative flex items-center justify-center"
         style={{ width: "100%", height: "100%" }}
       >
+        {/* GLASS + BLUR BACKGROUND */}
         {!isResultPage && (
           <>
+            {/* Blur */}
             <div
               className="absolute"
               style={{
@@ -36,6 +39,7 @@ const App: React.FC = () => {
               }}
             />
 
+            {/* Glass rectangle */}
             <div
               className="absolute pointer-events-none"
               style={{
@@ -54,11 +58,13 @@ const App: React.FC = () => {
           </>
         )}
 
+        {/* QUIZ / RESULT */}
         {score === null ? (
           <div
             className="absolute z-20 rounded-[40px] p-16"
             style={{ width: 1250 }}
           >
+            {/* MAIN CONTENT RECTANGLE */}
             <div
               className="relative rounded-[40px] p-16"
               style={{
@@ -67,6 +73,7 @@ const App: React.FC = () => {
                 border: "0.72px solid rgba(255,255,255,1)",
                 borderRadius: 40,
                 boxShadow: "0 10px 40px rgba(31,61,75,0.15)",
+                zIndex: 20,
               }}
             >
               <Quiz
@@ -74,44 +81,39 @@ const App: React.FC = () => {
                 onQuestionChange={setQuestionIndex}
               />
 
-              {/* PAW + BUBBLE — ONLY QUESTION 1 */}
+              {/* 🐾 PAW — INSIDE MAIN CONTENT, TOUCHING LEFT-BOTTOM */}
               {questionIndex === 0 && (
-                <div
+                <img
+                  src="/paw.gif"
+                  alt="paw"
                   style={{
                     position: "absolute",
-                    inset: 0,
+                    left: "-10px",   // touches inner edge
+                    bottom: "-12px", // touches bottom edge
+                    width: "150px",
+                    zIndex: 30,
                     pointerEvents: "none",
                   }}
-                >
-                  {/* Bubble */}
-                  <img
-                    src="/bubble.png"
-                    alt="bubble"
-                    style={{
-                      position: "absolute",
-                      bottom: "78px",
-                      left: "120px", // ← moved left
-                      width: "240px",
-                      zIndex: 40,
-                      animation: "floatBubble 3s ease-in-out infinite",
-                    }}
-                  />
-
-                  {/* Paw */}
-                  <img
-                    src="/paw.gif"
-                    alt="paw"
-                    style={{
-                      position: "absolute",
-                      bottom: "28px",
-                      left: "190px", // ← moved left
-                      width: "150px",
-                      zIndex: 50,
-                    }}
-                  />
-                </div>
+                />
               )}
             </div>
+
+            {/* 💬 BUBBLE — BETWEEN GLASS & MAIN CONTENT */}
+            {questionIndex === 0 && (
+              <img
+                src="/bubble.png"
+                alt="bubble"
+                style={{
+                  position: "absolute",
+                  left: "95px",
+                  bottom: "115px",
+                  width: "240px",
+                  zIndex: 10, // BELOW main content, ABOVE glass
+                  pointerEvents: "none",
+                  animation: "floatBubble 3s ease-in-out infinite",
+                }}
+              />
+            )}
           </div>
         ) : (
           <div className="z-20">
