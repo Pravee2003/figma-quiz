@@ -5,18 +5,8 @@ import Result from "./components/Result";
 const App: React.FC = () => {
   const [score, setScore] = useState<number | null>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [isRestarting, setIsRestarting] = useState(false);
 
   const isResultPage = score !== null;
-
-  const handleRestart = () => {
-    setIsRestarting(true);
-    setTimeout(() => {
-      setScore(null);
-      setQuestionIndex(0);
-      setIsRestarting(false);
-    }, 450); // match animation duration
-  };
 
   return (
     <main
@@ -47,7 +37,6 @@ const App: React.FC = () => {
               }}
             />
 
-            {/* GLASS RECTANGLE */}
             <div
               className="absolute pointer-events-none"
               style={{
@@ -61,10 +50,6 @@ const App: React.FC = () => {
                 left: "50%",
                 transform: "translate(-50%, -50%)",
                 zIndex: 1,
-                animation:
-                  isRestarting && questionIndex === 0
-                    ? "scaleDown 0.45s ease-in-out"
-                    : undefined,
               }}
             />
           </>
@@ -87,10 +72,6 @@ const App: React.FC = () => {
                 boxShadow: "0 10px 40px rgba(31,61,75,0.15)",
                 overflow: "visible",
                 zIndex: 20,
-                animation:
-                  isRestarting && questionIndex === 0
-                    ? "scaleDown 0.45s ease-in-out"
-                    : undefined,
               }}
             >
               <Quiz
@@ -98,34 +79,34 @@ const App: React.FC = () => {
                 onQuestionChange={setQuestionIndex}
               />
 
-              {/* PAW — TOUCH CONTENT LEFT & BOTTOM */}
+              {/* PAW — TOUCH LEFT & BOTTOM EDGE */}
               {questionIndex === 0 && (
                 <img
                   src="/paw.gif"
                   alt="paw"
                   style={{
                     position: "absolute",
-                    left: 0,
-                    bottom: 0,
+                    left: 0,        // touches left edge
+                    bottom: 0,      // touches bottom edge
                     width: 150,
-                    zIndex: 60,
+                    zIndex: 50,     // TOP LAYER
                     pointerEvents: "none",
                   }}
                 />
               )}
             </div>
 
-            {/* BUBBLE — TOUCH GLASS LEFT EDGE, TOP LAYER */}
+            {/* BUBBLE — BETWEEN GLASS & CONTENT */}
             {questionIndex === 0 && (
               <img
                 src="/bubble.png"
                 alt="bubble"
                 style={{
                   position: "absolute",
-                  left: "calc(50% - 675px)", // GLASS LEFT EDGE (1350 / 2)
-                  bottom: 140,
+                  left: 40,          // slightly outside content
+                  bottom: 110,       // between glass & card
                   width: 240,
-                  zIndex: 55, // TOP layer
+                  zIndex: 30,        // between layers
                   pointerEvents: "none",
                   animation: "floatBubble 3s ease-in-out infinite",
                 }}
@@ -134,7 +115,7 @@ const App: React.FC = () => {
           </div>
         ) : (
           <div className="z-20">
-            <Result score={score} onRestart={handleRestart} />
+            <Result score={score} onRestart={() => setScore(null)} />
           </div>
         )}
       </div>
