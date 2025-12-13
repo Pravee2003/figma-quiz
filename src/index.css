@@ -23,7 +23,18 @@
 
 /* fixed full-screen background: gradient and large blur to mimic Figma */
 .bg-lightBg {
-  background: linear-gradient(112.86deg, rgba(255,255,255,0.4) -6.68%, rgba(255,255,255,0.12) 45.63%, rgba(255,255,255,0.4) 103.45%), linear-gradient(180deg, var(--bg-grad-1), var(--bg-grad-2));
+  background:
+    linear-gradient(
+      112.86deg,
+      rgba(255,255,255,0.4) -6.68%,
+      rgba(255,255,255,0.12) 45.63%,
+      rgba(255,255,255,0.4) 103.45%
+    ),
+    linear-gradient(
+      180deg,
+      var(--bg-grad-1),
+      var(--bg-grad-2)
+    );
   background-size: cover;
   filter: blur(0px);
 }
@@ -31,8 +42,8 @@
 /* bubble float animation (subtle) */
 @keyframes floatBubble {
   0% { transform: translateY(0); }
-  50%{ transform: translateY(-6px); }
-  100%{ transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
 }
 
 /* rolling number style container */
@@ -45,6 +56,8 @@
   letter-spacing: -0.02em;
   color: #266580; /* deep teal */
 }
+
+/* scale-in animation for main card */
 @keyframes scaleInAnim {
   0% {
     transform: scale(1.12);
@@ -59,6 +72,8 @@
 .animate-scaleIn {
   animation: scaleInAnim 0.6s ease-out;
 }
+
+/* glass scale-in animation */
 @keyframes glassScaleIn {
   0% {
     transform: translate(-50%, -50%) scale(1.18);
@@ -74,5 +89,14 @@
   animation: glassScaleIn 0.9s ease-out;
 }
 
-
-
+/* 🔽 SCALE-DOWN animation (Start Again → ONLY Q1) */
+@keyframes scaleDown {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0;
+  }
+}
