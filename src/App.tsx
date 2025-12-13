@@ -8,6 +8,10 @@ const App: React.FC = () => {
 
   const isResultPage = score !== null;
 
+  // CONSTANTS (do not change unless asset size changes)
+  const PAW_WIDTH = 150;
+  const BUBBLE_WIDTH = 240;
+
   return (
     <main
       className="min-h-screen w-screen flex items-center justify-center relative overflow-hidden"
@@ -71,6 +75,7 @@ const App: React.FC = () => {
                 borderRadius: 40,
                 boxShadow: "0 10px 40px rgba(31,61,75,0.15)",
                 overflow: "visible",
+                zIndex: 20,
               }}
             >
               <Quiz
@@ -78,39 +83,48 @@ const App: React.FC = () => {
                 onQuestionChange={setQuestionIndex}
               />
 
-              {/* PAW — FIXED POSITION */}
+              {/* PAW — FIXED TO CONTENT EDGE */}
               {questionIndex === 0 && (
                 <img
                   src="/paw.gif"
                   alt="paw"
                   style={{
                     position: "absolute",
-                    left: 0,        // touches content left edge
-                    bottom: 0,      // touches content bottom edge
-                    width: 150,
+                    left: 0,
+                    bottom: 0,
+                    width: PAW_WIDTH,
                     zIndex: 50,
                     pointerEvents: "none",
                   }}
                 />
               )}
-
-              {/* BUBBLE — STACKED ABOVE PAW */}
-              {questionIndex === 0 && (
-                <img
-                  src="/bubble.png"
-                  alt="bubble"
-                  style={{
-                    position: "absolute",
-                    left: 10,              // aligned visually with paw
-                    bottom: 150 + 12,      // paw height (150) + GAP (12px)
-                    width: 280,            // ⬅ slightly bigger
-                    zIndex: 30,             // between glass & content
-                    pointerEvents: "none",
-                    animation: "floatBubble 3s ease-in-out infinite",
-                  }}
-                />
-              )}
             </div>
+
+            {/* BUBBLE — RIGHT EDGE TOUCHES PAW TOP MIDDLE */}
+            {questionIndex === 0 && (
+              <img
+                src="/bubble.png"
+                alt="bubble"
+                style={{
+                  position: "absolute",
+
+                  /* 
+                    Paw left = 0
+                    Paw top middle X = PAW_WIDTH / 2
+                    Bubble right edge touches that point
+                  */
+                  left: PAW_WIDTH / 2 - BUBBLE_WIDTH,
+
+                  /* Place bubble vertically between glass & content */
+                  bottom: PAW_WIDTH + 20,
+
+                  width: BUBBLE_WIDTH,
+                  zIndex: 30,
+                  pointerEvents: "none",
+                  animation: "floatBubble 3s ease-in-out infinite",
+                }}
+              />
+            )}
           </div>
         ) : (
           <div className="z-20">
