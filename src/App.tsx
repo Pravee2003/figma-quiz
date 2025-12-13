@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import Quiz from "./components/Quiz/Quiz";
 import Result from "./components/Result";
 
-const PAW_WIDTH = 150;
-const PAW_HEIGHT = 150;
-const BUBBLE_WIDTH = 240;
+const GLASS_WIDTH = 1350;
 
 const App: React.FC = () => {
   const [score, setScore] = useState<number | null>(null);
@@ -44,7 +42,7 @@ const App: React.FC = () => {
             <div
               className="absolute pointer-events-none"
               style={{
-                width: "1350px",
+                width: `${GLASS_WIDTH}px`,
                 height: "900px",
                 borderRadius: "42px",
                 background:
@@ -56,6 +54,24 @@ const App: React.FC = () => {
                 zIndex: 1,
               }}
             />
+
+            {/* BUBBLE — TOUCHES GLASS LEFT EDGE */}
+            {questionIndex === 0 && (
+              <img
+                src="/bubble.png"
+                alt="bubble"
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: `translate(calc(-50% - ${GLASS_WIDTH / 2}px), 180px)`,
+                  width: 240,
+                  zIndex: 30, // above glass, below paw
+                  pointerEvents: "none",
+                  animation: "floatBubble 3s ease-in-out infinite",
+                }}
+              />
+            )}
           </>
         )}
 
@@ -65,7 +81,6 @@ const App: React.FC = () => {
             className="absolute z-20 rounded-[40px] p-16"
             style={{ width: 1250 }}
           >
-            {/* CONTENT CARD */}
             <div
               className="relative rounded-[40px] p-16"
               style={{
@@ -83,7 +98,7 @@ const App: React.FC = () => {
                 onQuestionChange={setQuestionIndex}
               />
 
-              {/* PAW — TOUCH LEFT & BOTTOM */}
+              {/* PAW — TOUCHES CONTENT LEFT & BOTTOM */}
               {questionIndex === 0 && (
                 <img
                   src="/paw.gif"
@@ -92,43 +107,13 @@ const App: React.FC = () => {
                     position: "absolute",
                     left: 0,
                     bottom: 0,
-                    width: PAW_WIDTH,
-                    height: PAW_HEIGHT,
-                    zIndex: 50,
+                    width: 150,
+                    zIndex: 50, // TOPMOST
                     pointerEvents: "none",
                   }}
                 />
               )}
             </div>
-
-            {/* BUBBLE — RIGHT EDGE TOUCHES PAW TOP MIDDLE */}
-            {questionIndex === 0 && (
-              <img
-                src="/bubble.png"
-                alt="bubble"
-                style={{
-                  position: "absolute",
-
-                  /*
-                    Bubble right edge touches
-                    paw top-middle:
-                    pawWidth / 2 from left
-                  */
-                  left: PAW_WIDTH / 2 - BUBBLE_WIDTH,
-
-                  /*
-                    Bubble bottom touches
-                    paw top
-                  */
-                  bottom: PAW_HEIGHT,
-
-                  width: BUBBLE_WIDTH,
-                  zIndex: 30, // between glass & content
-                  pointerEvents: "none",
-                  animation: "floatBubble 3s ease-in-out infinite",
-                }}
-              />
-            )}
           </div>
         ) : (
           <div className="z-20">
