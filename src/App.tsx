@@ -5,19 +5,17 @@ import Result from "./components/Result";
 const App: React.FC = () => {
   const [score, setScore] = useState<number | null>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [scaleDown, setScaleDown] = useState(false);
+  const [isRestarting, setIsRestarting] = useState(false);
 
   const isResultPage = score !== null;
 
   const handleRestart = () => {
-    // 🔥 trigger scale-down
-    setScaleDown(true);
-
+    setIsRestarting(true);
     setTimeout(() => {
       setScore(null);
       setQuestionIndex(0);
-      setScaleDown(false);
-    }, 400);
+      setIsRestarting(false);
+    }, 450);
   };
 
   return (
@@ -31,47 +29,52 @@ const App: React.FC = () => {
     >
       <div className="relative w-full h-full flex items-center justify-center">
 
-        {/* GLASS RECTANGLE */}
+        {/* GLASS RECTANGLE (wrapped for animation) */}
         {!isResultPage && (
           <div
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: `
-                translate(-50%, -50%)
-                scale(${scaleDown && questionIndex === 0 ? 0.92 : 1})
-              `,
-              opacity: scaleDown && questionIndex === 0 ? 0 : 1,
-              transition: "transform 0.4s ease, opacity 0.4s ease",
-              zIndex: 1,
-              width: 1350,
-              height: 900,
-              borderRadius: 42,
-              background:
-                "linear-gradient(112.86deg, rgba(255,255,255,0.4) -6.68%, rgba(255,255,255,0.12) 45.63%, rgba(255,255,255,0.4) 103.45%)",
-              boxShadow: "0 10px 40px rgba(0,0,0,0.05)",
-              pointerEvents: "none",
-            }}
-          />
+            className={
+              isRestarting && questionIndex === 0
+                ? "animate-scaleDown"
+                : ""
+            }
+            style={{ position: "absolute", zIndex: 1 }}
+          >
+            <div
+              className="pointer-events-none"
+              style={{
+                width: "1350px",
+                height: "900px",
+                borderRadius: "42px",
+                background:
+                  "linear-gradient(112.86deg, rgba(255,255,255,0.4) -6.68%, rgba(255,255,255,0.12) 45.63%, rgba(255,255,255,0.4) 103.45%)",
+                boxShadow: "0 10px 40px rgba(0,0,0,0.05)",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+            />
+          </div>
         )}
 
         {/* MAIN CONTENT */}
         {score === null ? (
           <div
+            className={
+              isRestarting && questionIndex === 0
+                ? "animate-scaleDown"
+                : ""
+            }
             style={{
-              position: "absolute",
               zIndex: 20,
+              position: "absolute",
               width: 1250,
-              transform: `scale(${scaleDown && questionIndex === 0 ? 0.92 : 1})`,
-              opacity: scaleDown && questionIndex === 0 ? 0 : 1,
-              transition: "transform 0.4s ease, opacity 0.4s ease",
             }}
           >
             <div
               className="relative rounded-[40px] p-16"
               style={{
-                width: 1150,
+                width: "1150px",
                 background: "#F4FDFF",
                 borderRadius: 40,
                 boxShadow: "0 10px 40px rgba(31,61,75,0.15)",
@@ -82,7 +85,7 @@ const App: React.FC = () => {
                 onQuestionChange={setQuestionIndex}
               />
 
-              {/* PAW — TOUCH LEFT & BOTTOM */}
+              {/* PAW */}
               {questionIndex === 0 && (
                 <img
                   src="/paw.gif"
@@ -99,14 +102,14 @@ const App: React.FC = () => {
               )}
             </div>
 
-            {/* BUBBLE — TOUCH GLASS LEFT EDGE, TOP LAYER */}
+            {/* BUBBLE */}
             {questionIndex === 0 && (
               <img
                 src="/bubble.png"
                 alt="bubble"
                 style={{
                   position: "absolute",
-                  left: "calc(50% - 675px)", // glass left edge
+                  left: "calc(50% - 675px)",
                   bottom: 140,
                   width: 240,
                   zIndex: 55,
