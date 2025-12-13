@@ -17,15 +17,13 @@ const App: React.FC = () => {
           : "linear-gradient(112.86deg,#BECFEE 0%, #71C6E2 33%, #D9F4FA 66%, #BECFEE 100%)",
       }}
     >
-      {/* OUTER WRAPPER */}
       <div
         className="relative flex items-center justify-center"
         style={{ width: "100%", height: "100%" }}
       >
-        {/* GLASS + BLUR BACKGROUND */}
+        {/* GLASS BACKGROUND */}
         {!isResultPage && (
           <>
-            {/* Blur */}
             <div
               className="absolute"
               style={{
@@ -39,7 +37,6 @@ const App: React.FC = () => {
               }}
             />
 
-            {/* Glass rectangle */}
             <div
               className="absolute pointer-events-none"
               style={{
@@ -58,7 +55,7 @@ const App: React.FC = () => {
           </>
         )}
 
-        {/* QUIZ / RESULT */}
+        {/* MAIN CONTENT */}
         {score === null ? (
           <div
             className="absolute z-20 rounded-[40px] p-16"
@@ -73,6 +70,7 @@ const App: React.FC = () => {
                 border: "0.72px solid rgba(255,255,255,1)",
                 borderRadius: 40,
                 boxShadow: "0 10px 40px rgba(31,61,75,0.15)",
+                overflow: "visible",
                 zIndex: 20,
               }}
             >
@@ -81,34 +79,34 @@ const App: React.FC = () => {
                 onQuestionChange={setQuestionIndex}
               />
 
-              {/* 🐾 PAW — INSIDE MAIN CONTENT, TOUCHING LEFT-BOTTOM */}
+              {/* PAW — TOUCH LEFT & BOTTOM EDGE */}
               {questionIndex === 0 && (
                 <img
                   src="/paw.gif"
                   alt="paw"
                   style={{
                     position: "absolute",
-                    left: "-10px",   // touches inner edge
-                    bottom: "-12px", // touches bottom edge
-                    width: "150px",
-                    zIndex: 30,
+                    left: 0,        // touches left edge
+                    bottom: 0,      // touches bottom edge
+                    width: 150,
+                    zIndex: 50,     // TOP LAYER
                     pointerEvents: "none",
                   }}
                 />
               )}
             </div>
 
-            {/* 💬 BUBBLE — BETWEEN GLASS & MAIN CONTENT */}
+            {/* BUBBLE — BETWEEN GLASS & CONTENT */}
             {questionIndex === 0 && (
               <img
                 src="/bubble.png"
                 alt="bubble"
                 style={{
                   position: "absolute",
-                  left: "95px",
-                  bottom: "115px",
-                  width: "240px",
-                  zIndex: 10, // BELOW main content, ABOVE glass
+                  left: 40,          // slightly outside content
+                  bottom: 110,       // between glass & card
+                  width: 240,
+                  zIndex: 30,        // between layers
                   pointerEvents: "none",
                   animation: "floatBubble 3s ease-in-out infinite",
                 }}
