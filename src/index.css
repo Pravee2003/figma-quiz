@@ -100,19 +100,5 @@
     opacity: 0;
   }
 }
-/* SCALE DOWN WITHOUT TOUCHING TRANSLATE */
-@keyframes scaleDownOnly {
-  0% {
-    scale: 1;
-    opacity: 1;
-  }
-  100% {
-    scale: 0.92;
-    opacity: 0;
-  }
-}
 
-.animate-scaleDown {
-  animation: scaleDownOnly 0.45s ease-in-out forwards;
-}
 
