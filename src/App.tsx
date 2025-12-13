@@ -15,7 +15,7 @@ const App: React.FC = () => {
       setScore(null);
       setQuestionIndex(0);
       setIsRestarting(false);
-    }, 450); // match animation duration
+    }, 450);
   };
 
   return (
@@ -27,29 +27,20 @@ const App: React.FC = () => {
           : "linear-gradient(112.86deg,#BECFEE 0%, #71C6E2 33%, #D9F4FA 66%, #BECFEE 100%)",
       }}
     >
-      <div
-        className="relative flex items-center justify-center"
-        style={{ width: "100%", height: "100%" }}
-      >
-        {/* GLASS BACKGROUND */}
-        {!isResultPage && (
-          <>
-            <div
-              className="absolute"
-              style={{
-                width: "100%",
-                height: "100%",
-                filter: "blur(12px)",
-                opacity: 0.35,
-                background:
-                  "linear-gradient(112.86deg,#BECFEE 0%, #71C6E2 33%, #D9F4FA 66%, #BECFEE 100%)",
-                zIndex: 0,
-              }}
-            />
+      <div className="relative w-full h-full flex items-center justify-center">
 
-            {/* GLASS RECTANGLE */}
+        {/* GLASS RECTANGLE (wrapped for animation) */}
+        {!isResultPage && (
+          <div
+            className={
+              isRestarting && questionIndex === 0
+                ? "animate-scaleDown"
+                : ""
+            }
+            style={{ position: "absolute", zIndex: 1 }}
+          >
             <div
-              className="absolute pointer-events-none"
+              className="pointer-events-none"
               style={{
                 width: "1350px",
                 height: "900px",
@@ -57,40 +48,36 @@ const App: React.FC = () => {
                 background:
                   "linear-gradient(112.86deg, rgba(255,255,255,0.4) -6.68%, rgba(255,255,255,0.12) 45.63%, rgba(255,255,255,0.4) 103.45%)",
                 boxShadow: "0 10px 40px rgba(0,0,0,0.05)",
+                position: "absolute",
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
-                zIndex: 1,
-                animation:
-                  isRestarting && questionIndex === 0
-                    ? "scaleDown 0.45s ease-in-out"
-                    : undefined,
               }}
             />
-          </>
+          </div>
         )}
 
         {/* MAIN CONTENT */}
         {score === null ? (
           <div
-            className="absolute z-20 rounded-[40px] p-16"
-            style={{ width: 1250 }}
+            className={
+              isRestarting && questionIndex === 0
+                ? "animate-scaleDown"
+                : ""
+            }
+            style={{
+              zIndex: 20,
+              position: "absolute",
+              width: 1250,
+            }}
           >
-            {/* MAIN CONTENT RECTANGLE */}
             <div
               className="relative rounded-[40px] p-16"
               style={{
                 width: "1150px",
                 background: "#F4FDFF",
-                border: "0.72px solid rgba(255,255,255,1)",
                 borderRadius: 40,
                 boxShadow: "0 10px 40px rgba(31,61,75,0.15)",
-                overflow: "visible",
-                zIndex: 20,
-                animation:
-                  isRestarting && questionIndex === 0
-                    ? "scaleDown 0.45s ease-in-out"
-                    : undefined,
               }}
             >
               <Quiz
@@ -98,7 +85,7 @@ const App: React.FC = () => {
                 onQuestionChange={setQuestionIndex}
               />
 
-              {/* PAW — TOUCH CONTENT LEFT & BOTTOM */}
+              {/* PAW */}
               {questionIndex === 0 && (
                 <img
                   src="/paw.gif"
@@ -115,17 +102,17 @@ const App: React.FC = () => {
               )}
             </div>
 
-            {/* BUBBLE — TOUCH GLASS LEFT EDGE, TOP LAYER */}
+            {/* BUBBLE */}
             {questionIndex === 0 && (
               <img
                 src="/bubble.png"
                 alt="bubble"
                 style={{
                   position: "absolute",
-                  left: "calc(50% - 675px)", // GLASS LEFT EDGE (1350 / 2)
+                  left: "calc(50% - 675px)",
                   bottom: 140,
                   width: 240,
-                  zIndex: 55, // TOP layer
+                  zIndex: 55,
                   pointerEvents: "none",
                   animation: "floatBubble 3s ease-in-out infinite",
                 }}
