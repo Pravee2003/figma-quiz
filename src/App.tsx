@@ -86,27 +86,27 @@ const App: React.FC = () => {
                   alt="paw"
                   style={{
                     position: "absolute",
-                    left: 0,        // touches left edge
-                    bottom: 0,      // touches bottom edge
+                    left: 0,
+                    bottom: 0,
                     width: 150,
-                    zIndex: 50,     // TOP LAYER
+                    zIndex: 50, // TOP LAYER
                     pointerEvents: "none",
                   }}
                 />
               )}
             </div>
 
-            {/* BUBBLE — BETWEEN GLASS & CONTENT */}
+            {/* BUBBLE — BOTTOM-RIGHT TOUCHES PAW TOP-LEFT */}
             {questionIndex === 0 && (
               <img
                 src="/bubble.png"
                 alt="bubble"
                 style={{
                   position: "absolute",
-                  left: 40,          // slightly outside content
-                  bottom: 110,       // between glass & card
+                  left: -240,     // bubble width (touches paw left)
+                  bottom: 150,    // paw height (touches paw top)
                   width: 240,
-                  zIndex: 30,        // between layers
+                  zIndex: 30,     // between glass & content
                   pointerEvents: "none",
                   animation: "floatBubble 3s ease-in-out infinite",
                 }}
