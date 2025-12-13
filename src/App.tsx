@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import Quiz from "./components/Quiz/Quiz";
 import Result from "./components/Result";
 
+const PAW_WIDTH = 150;
+const PAW_HEIGHT = 150;
+const BUBBLE_WIDTH = 240;
+
 const App: React.FC = () => {
   const [score, setScore] = useState<number | null>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
 
   const isResultPage = score !== null;
-
-  // CONSTANTS (do not change unless asset size changes)
-  const PAW_WIDTH = 150;
-  const BUBBLE_WIDTH = 240;
 
   return (
     <main
@@ -65,7 +65,7 @@ const App: React.FC = () => {
             className="absolute z-20 rounded-[40px] p-16"
             style={{ width: 1250 }}
           >
-            {/* CONTENT RECTANGLE */}
+            {/* CONTENT CARD */}
             <div
               className="relative rounded-[40px] p-16"
               style={{
@@ -83,7 +83,7 @@ const App: React.FC = () => {
                 onQuestionChange={setQuestionIndex}
               />
 
-              {/* PAW — FIXED TO CONTENT EDGE */}
+              {/* PAW — TOUCH LEFT & BOTTOM */}
               {questionIndex === 0 && (
                 <img
                   src="/paw.gif"
@@ -93,6 +93,7 @@ const App: React.FC = () => {
                     left: 0,
                     bottom: 0,
                     width: PAW_WIDTH,
+                    height: PAW_HEIGHT,
                     zIndex: 50,
                     pointerEvents: "none",
                   }}
@@ -108,32 +109,17 @@ const App: React.FC = () => {
                 style={{
                   position: "absolute",
 
-                  /* 
-                    Paw left = 0
-                    Paw top middle X = PAW_WIDTH / 2
-                    Bubble right edge touches that point
+                  /*
+                    Bubble right edge touches
+                    paw top-middle:
+                    pawWidth / 2 from left
                   */
                   left: PAW_WIDTH / 2 - BUBBLE_WIDTH,
 
-                  /* Place bubble vertically between glass & content */
-                  bottom: PAW_WIDTH + 20,
+                  /*
+                    Bubble bottom touches
+                    paw top
+                  */
+                  bottom: PAW_HEIGHT,
 
                   width: BUBBLE_WIDTH,
-                  zIndex: 30,
-                  pointerEvents: "none",
-                  animation: "floatBubble 3s ease-in-out infinite",
-                }}
-              />
-            )}
-          </div>
-        ) : (
-          <div className="z-20">
-            <Result score={score} onRestart={() => setScore(null)} />
-          </div>
-        )}
-      </div>
-    </main>
-  );
-};
-
-export default App;
