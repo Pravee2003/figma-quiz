@@ -4,6 +4,7 @@ import Result from "./components/Result";
 
 const App: React.FC = () => {
   const [score, setScore] = useState<number | null>(null);
+  const [questionIndex, setQuestionIndex] = useState(0);
 
   const isResultPage = score !== null;
 
@@ -16,19 +17,14 @@ const App: React.FC = () => {
           : "linear-gradient(112.86deg,#BECFEE 0%, #71C6E2 33%, #D9F4FA 66%, #BECFEE 100%)",
       }}
     >
-
-      {/* OUTER WRAPPER (this keeps things centered) */}
+      {/* OUTER WRAPPER */}
       <div
         className="relative flex items-center justify-center"
         style={{ width: "100%", height: "100%" }}
       >
-
-        {/* ----------------------------- */}
-        {/* QUIZ BACKGROUND (before result) */}
-        {/* ----------------------------- */}
+        {/* QUIZ BACKGROUND */}
         {!isResultPage && (
           <>
-            {/* Blurred background */}
             <div
               className="absolute"
               style={{
@@ -42,7 +38,6 @@ const App: React.FC = () => {
               }}
             />
 
-            {/* CENTERED GLASS RECTANGLE */}
             <div
               className="absolute pointer-events-none"
               style={{
@@ -52,27 +47,23 @@ const App: React.FC = () => {
                 background:
                   "linear-gradient(112.86deg, rgba(255,255,255,0.4) -6.68%, rgba(255,255,255,0.12) 45.63%, rgba(255,255,255,0.4) 103.45%)",
                 boxShadow: "0 10px 40px rgba(0,0,0,0.05)",
-
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
-
                 zIndex: 1,
               }}
             />
           </>
         )}
 
-        {/* ----------------------------- */}
-        {/* QUIZ OR RESULT CONTENT */}
-        {/* ----------------------------- */}
+        {/* QUIZ OR RESULT */}
         {score === null ? (
           <div
             className="absolute z-20 rounded-[40px] p-16"
             style={{ width: 1250 }}
           >
             <div
-              className="rounded-[40px] p-16"
+              className="relative rounded-[40px] p-16"
               style={{
                 width: "1150px",
                 background: "#F4FDFF",
@@ -81,7 +72,47 @@ const App: React.FC = () => {
                 boxShadow: "0 10px 40px rgba(31,61,75,0.15)",
               }}
             >
-              <Quiz onFinish={(val) => setScore(val)} />
+              {/* QUIZ */}
+              <Quiz
+                onFinish={(val) => setScore(val)}
+                onQuestionChange={setQuestionIndex}
+              />
+
+              {/* PAW + BUBBLE — ONLY QUESTION 1 */}
+              {questionIndex === 0 && (
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    pointerEvents: "none",
+                  }}
+                >
+                  <img
+                    src="/bubble.png"
+                    alt="bubble"
+                    style={{
+                      position: "absolute",
+                      bottom: "78px",
+                      left: "140px",
+                      width: "240px",
+                      zIndex: 40,
+                      animation: "floatBubble 3s ease-in-out infinite",
+                    }}
+                  />
+
+                  <img
+                    src="/paw.gif"
+                    alt="paw"
+                    style={{
+                      position: "absolute",
+                      bottom: "28px",
+                      left: "215px",
+                      width: "150px",
+                      zIndex: 50,
+                    }}
+                  />
+                </div>
+              )}
             </div>
           </div>
         ) : (
@@ -89,50 +120,9 @@ const App: React.FC = () => {
             <Result score={score} onRestart={() => setScore(null)} />
           </div>
         )}
-
-        {/* ----------------------------- */}
-        {/* PAW + BUBBLE (only on first quiz screen) */}
-        {/* ----------------------------- */}
-        {score === null && (
-          <>
-            {/* Bubble */}
-            <img
-                src="/bubble.png"
-            alt="bubble"
-            style={{
-              position: "absolute",
-              bottom: 5,         // PERFECT POSITION MATCHING YOUR SECOND SCREENSHOT
-              left: "16%",         // FIXED RELATIVE TO CARD → WORKS IN ALL BROWSERS
-              width: 240,
-              zIndex: 40,
-              pointerEvents: "none",
-              animation: "floatBubble 3s ease-in-out infinite",
-              }}
-            />
-
-            {/* Paw */}
-            <img
-              src="/paw.gif"
-            alt="paw"
-            style={{
-              position: "absolute",
-              bottom: 2,          // EXACT SAME POSITION AS LOCAL
-              left: "22%",         // CHANGED TO PERCENT SO IT DOES NOT SHIFT IN FIREFOX
-              width: 150,
-              zIndex: 50,
-              pointerEvents: "none",
-              }}
-            />
-          </>
-        )}
-
-      </div> {/* ← CLOSING WRAPPER DIV */}
-
+      </div>
     </main>
   );
 };
 
 export default App;
-
-
-
