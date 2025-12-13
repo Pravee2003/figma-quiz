@@ -101,7 +101,7 @@ const App: React.FC = () => {
             alt="bubble"
             style={{
               position: "absolute",
-              bottom: 165,         // PERFECT POSITION MATCHING YOUR SECOND SCREENSHOT
+              bottom: 40,         // PERFECT POSITION MATCHING YOUR SECOND SCREENSHOT
               left: "16%",         // FIXED RELATIVE TO CARD → WORKS IN ALL BROWSERS
               width: 240,
               zIndex: 40,
