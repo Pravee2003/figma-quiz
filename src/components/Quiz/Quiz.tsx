@@ -27,6 +27,18 @@ const Quiz: React.FC<Props> = ({ onFinish, onQuestionChange }) => {
 
   const isLast = index === QUESTIONS.length - 1;
 
+  // 🔹 Shared button style (Arrows + Submit)
+  const buttonStyle: React.CSSProperties = {
+    height: 50,
+    borderRadius: 10,
+    background: "linear-gradient(89.72deg,#C6E9F7 0.09%,#E5F8FF 99.91%)",
+    border: "1px solid rgba(150,229,255,0.05)", // #96E5FF @ 5%
+    fontSize: 18,
+    fontWeight: 700,
+    color: "#15313D",
+    cursor: "pointer",
+  };
+
   const handleNext = () => {
     if (selected === QUESTIONS[index].correct) {
       setScore((s) => s + 1);
@@ -91,15 +103,15 @@ const Quiz: React.FC<Props> = ({ onFinish, onQuestionChange }) => {
         />
       </div>
 
+      {/* NAVIGATION */}
       <div className="flex justify-end gap-4 mt-6">
         {!isLast && (
           <button
             onClick={handlePrev}
             disabled={index === 0}
             style={{
+              ...buttonStyle,
               width: 53,
-              height: 50,
-              borderRadius: 10,
               opacity: index === 0 ? 0.4 : 1,
             }}
           >
@@ -110,7 +122,7 @@ const Quiz: React.FC<Props> = ({ onFinish, onQuestionChange }) => {
         {!isLast && (
           <button
             onClick={handleNext}
-            style={{ width: 53, height: 50, borderRadius: 10 }}
+            style={{ ...buttonStyle, width: 53 }}
           >
             →
           </button>
@@ -119,7 +131,10 @@ const Quiz: React.FC<Props> = ({ onFinish, onQuestionChange }) => {
         {isLast && (
           <button
             onClick={handleNext}
-            style={{ padding: "0 24px", height: 50, borderRadius: 10 }}
+            style={{
+              ...buttonStyle,
+              padding: "0 28px",
+            }}
           >
             Submit
           </button>
