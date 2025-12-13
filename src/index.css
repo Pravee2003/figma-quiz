@@ -73,16 +73,6 @@
 .animate-scaleInGlass {
   animation: glassScaleIn 0.9s ease-out;
 }
-@keyframes scaleDown {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(0.92);
-    opacity: 0;
-  }
-}
 
 
 
