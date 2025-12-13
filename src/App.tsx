@@ -79,7 +79,7 @@ const App: React.FC = () => {
                 onQuestionChange={setQuestionIndex}
               />
 
-              {/* PAW — TOUCH LEFT & BOTTOM EDGE */}
+              {/* 🐾 PAW — TOUCH LEFT & BOTTOM EDGE */}
               {questionIndex === 0 && (
                 <img
                   src="/paw.gif"
@@ -89,24 +89,24 @@ const App: React.FC = () => {
                     left: 0,
                     bottom: 0,
                     width: 150,
-                    zIndex: 50, // TOP LAYER
+                    zIndex: 50, // topmost
                     pointerEvents: "none",
                   }}
                 />
               )}
             </div>
 
-            {/* BUBBLE — BOTTOM-RIGHT TOUCHES PAW TOP-LEFT */}
+            {/* 💬 BUBBLE — TOUCH PAW TOP EDGE */}
             {questionIndex === 0 && (
               <img
                 src="/bubble.png"
                 alt="bubble"
                 style={{
                   position: "absolute",
-                  left: -240,     // bubble width (touches paw left)
-                  bottom: 150,    // paw height (touches paw top)
-                  width: 240,
-                  zIndex: 30,     // between glass & content
+                  left: 40,
+                  bottom: 150,          // touches paw top
+                  width: 270,           // slightly bigger
+                  zIndex: 30,           // between glass & content
                   pointerEvents: "none",
                   animation: "floatBubble 3s ease-in-out infinite",
                 }}
