@@ -61,7 +61,7 @@ const App: React.FC = () => {
             className="absolute z-20 rounded-[40px] p-16"
             style={{ width: 1250 }}
           >
-            {/* CONTENT CARD */}
+            {/* MAIN CONTENT RECTANGLE */}
             <div
               className="relative rounded-[40px] p-16"
               style={{
@@ -79,7 +79,7 @@ const App: React.FC = () => {
                 onQuestionChange={setQuestionIndex}
               />
 
-              {/* PAW — TOUCHES LEFT & BOTTOM EDGE */}
+              {/* PAW — TOUCHES LEFT & BOTTOM */}
               {questionIndex === 0 && (
                 <img
                   src="/paw.gif"
@@ -89,24 +89,24 @@ const App: React.FC = () => {
                     left: 0,
                     bottom: 0,
                     width: 150,
-                    zIndex: 50,
+                    zIndex: 60,
                     pointerEvents: "none",
                   }}
                 />
               )}
             </div>
 
-            {/* BUBBLE — TOUCHES PAW TOP EDGE + GAP */}
+            {/* BUBBLE — STACKED ABOVE PAW */}
             {questionIndex === 0 && (
               <img
                 src="/bubble.png"
                 alt="bubble"
                 style={{
                   position: "absolute",
-                  left: 32,          // aligned visually with paw
-                  bottom: 150 + 18,  // paw height (150) + ~0.5cm gap
-                  width: 270,        // slightly bigger
-                  zIndex: 30,        // between glass & content
+                  left: 0,                // same left edge as paw
+                  bottom: 150 + 20,       // paw height (150) + 0.5cm gap (~20px)
+                  width: 280,             // slightly bigger bubble
+                  zIndex: 40,             // between glass & paw
                   pointerEvents: "none",
                   animation: "floatBubble 3s ease-in-out infinite",
                 }}
