@@ -49,7 +49,7 @@ const App: React.FC = () => {
 
             {/* GLASS RECTANGLE */}
             <div
-              className="absolute pointer-events-none animate-scaleInGlass"
+              className="absolute pointer-events-none"
               style={{
                 width: "1350px",
                 height: "900px",
@@ -78,7 +78,7 @@ const App: React.FC = () => {
           >
             {/* MAIN CONTENT RECTANGLE */}
             <div
-              className="absolute z-20 rounded-[40px] p-16 animate-scaleIn"
+              className="relative rounded-[40px] p-16"
               style={{
                 width: "1150px",
                 background: "#F4FDFF",
